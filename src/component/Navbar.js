@@ -20,11 +20,11 @@ function Navbar() {
               Home <span className="sr-only">(current)</span>
             </Link>
           </li>
-          <li className={"nav-item "+location.pathname==='/about'?"active":""}>
+          {/* <li className={"nav-item "+location.pathname==='/about'?"active":""}>
             <Link className="nav-link" to="/about">
               About
             </Link>
-          </li>
+          </li> */}
         </ul>
         <form className="d-flex">
           {!localStorage.getItem("auth-token") && <><Link className="btn btn-secondary mx-1" to="/login" role="button">
