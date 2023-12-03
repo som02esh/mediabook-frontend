@@ -8,7 +8,10 @@ It is notes keeping site with user authentication created using MERN(MongoDB, Ex
 
 ## In this app user can
 -- login/signup with their email id and password.
+
 -- add new note
+
 -- edit/update existing note
+
 -- delete existing note
 
