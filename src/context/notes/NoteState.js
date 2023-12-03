@@ -4,6 +4,8 @@ import NoteContext from "./NoteContext";
 const NoteState = (props) => {
   const host="https://inotebook-server-m9df.onrender.com" 
   const [notes, setNotes] = useState([]);
+  const [data,setData] = useState(false)
+
   
   const getAllNotes=async ()=>{
     const getNotes= await fetch(host+"/api/notes/allNotes",{
@@ -14,6 +16,7 @@ const NoteState = (props) => {
     })
     const json= await getNotes.json();
     setNotes(json.allNotes)
+    setData(true)
   }  
 
 
@@ -21,6 +24,7 @@ const NoteState = (props) => {
 
   // adding a new note
   const addNote= async (title,description,tag,alert)=>{
+      setData(false)
      const res = await fetch(host+"/api/notes/createNote",{
       method:'POST',
       headers:{
@@ -35,19 +39,19 @@ const NoteState = (props) => {
 
   // delete a note
   const deleteNote=async (id)=>{
-    const res=await fetch(host+"/api/notes/deleteNote/"+id,{
+    setData(false)
+    await fetch(host+"/api/notes/deleteNote/"+id,{
       method:'DELETE',
       headers:{
         "auth-token": localStorage.getItem("auth-token")
       }
     })
-    if(res) props.showAlert("One note deleted succesfully","success")
-    const newNote=notes.filter((note)=>{return note._id!==id})
-    setNotes(newNote)
+    getAllNotes()
   }
 
   // edit a note
   const updateNote= async (note,alert)=>{
+    setData(false)
     const id=note.id;
     const title=String(note.utitle)
     const description=String(note.udescription)
@@ -70,7 +74,7 @@ const NoteState = (props) => {
 
 
   return (
-    <NoteContext.Provider value={{notes ,addNote, deleteNote, updateNote, getAllNotes}}>
+    <NoteContext.Provider value={{data,notes ,addNote, deleteNote, updateNote, getAllNotes}}>
       {props.children}
     </NoteContext.Provider>
   );

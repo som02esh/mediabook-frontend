@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 function Notes(props) {
   const navigate = useNavigate()
   const context = useContext(NoteContext);
-  const { notes, getAllNotes,updateNote } = context;
+  const { data, notes, getAllNotes,updateNote } = context;
   useEffect(() => {
       if(localStorage.getItem("auth-token")){
           getAllNotes();
@@ -88,7 +88,17 @@ function Notes(props) {
         </div>
       </div>
 
+
       <h2>Your Notes</h2>
+      {!data? 
+       <center>
+       <div class="spinner-grow text-dark" role="status" style={{width: "3rem", height: "3rem"}}>
+        <span class="sr-only">Loading...</span>
+      </div>
+       </center>
+      : 
+      <>
+      
       <div className="d-flex flex-wrap notes">
         <center style={notes.length===0?{display:"contents"}:{display:"none"}}><p>No Notes to display!!</p></center>
         {notes.map((note) => {
@@ -101,6 +111,8 @@ function Notes(props) {
           );
         })}
       </div>
+      </>
+      }
     </div>
   );
 }
