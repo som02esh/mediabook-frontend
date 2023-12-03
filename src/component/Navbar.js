@@ -1,15 +1,19 @@
-
 const { Link, useLocation } = require("react-router-dom");
+
 function Navbar() {
   const location =useLocation();
+  
   const handleClick=()=>{
     localStorage.removeItem("auth-token")
+    localStorage.removeItem("user")
   }
+  const user=localStorage.getItem("user")
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 ">
       <Link className="navbar-brand " to="/">
         <strong>iNotebook</strong>
       </Link>
+      {localStorage.getItem("user") && <h1>Welcome {user.slice(0,3)}!!</h1>}
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>

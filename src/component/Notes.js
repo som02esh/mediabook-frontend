@@ -92,8 +92,8 @@ function Notes(props) {
       <h2>Your Notes</h2>
       {!data? 
        <center>
-       <div class="spinner-grow text-dark" role="status" style={{width: "3rem", height: "3rem"}}>
-        <span class="sr-only">Loading...</span>
+       <div className="spinner-grow text-dark" role="status" style={{width: "3rem", height: "3rem"}}>
+        <span className="sr-only">Loading...</span>
       </div>
        </center>
       : 
