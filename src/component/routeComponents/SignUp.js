@@ -22,7 +22,7 @@ function Signup(props) {
         const json=await response.json()
         if(json.signup){
             localStorage.setItem("auth-token",json.authToken)
-            localStorage.setItem("userName",json.userName)
+            localStorage.setItem("user",json.userName)
             navigate("/")
             props.showAlert(json.msg,"success")
         }

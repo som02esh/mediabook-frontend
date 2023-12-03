@@ -13,7 +13,6 @@ function Navbar() {
       <Link className="navbar-brand " to="/">
         <strong>iNotebook</strong>
       </Link>
-      {localStorage.getItem("user") && <h1>Welcome {user.slice(0,3)}!!</h1>}
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -30,6 +29,8 @@ function Navbar() {
             </Link>
           </li> */}
         </ul>
+      {localStorage.getItem("user") && <h4 className="text-warning mr-2">Welcome {user.split(" ")[0]}!!</h4>}
+          
         <form className="d-flex">
           {!localStorage.getItem("auth-token") && <><Link className="btn btn-secondary mx-1" to="/login" role="button">
               Login
@@ -37,8 +38,7 @@ function Navbar() {
             <Link className="btn btn-secondary mx-1" to="/signup" role="button">
               Signup
             </Link></> }
-          {localStorage.getItem("auth-token") && <button className="btn btn-secondary mx-1" onClick={handleClick}>Log Out</button> }
-            
+          {localStorage.getItem("auth-token") && <button className="btn btn-secondary mx-1" onClick={handleClick}>Log Out</button> } 
           </form>
       </div>
     </nav>
