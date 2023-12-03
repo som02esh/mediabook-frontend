@@ -1,8 +1,10 @@
-# Check out the iNotebook at below:-
+# iNotebook-Site
+
+## Check out the iNotebook at below:-
 
 [iNotebook](https://inotebook-alexweb.netlify.app/)
 
-# About iNotebook Website 
+## About iNotebook Website 
 
 It is notes keeping site with user authentication created using MERN(MongoDB, ExpressJS,ReactJS,NodeJS).
 
@@ -14,4 +16,3 @@ It is notes keeping site with user authentication created using MERN(MongoDB, Ex
 -- edit/update existing note
 
 -- delete existing note
-
