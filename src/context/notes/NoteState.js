@@ -2,11 +2,24 @@ import { useState } from "react";
 import NoteContext from "./NoteContext";
 
 const NoteState = (props) => {
-  const host="https://inotebook-server-m9df.onrender.com" 
+  // const host="https://inotebook-server-m9df.onrender.com" 
+  const host="http://localhost:5000"
   const [notes, setNotes] = useState([]);
   const [data,setData] = useState(false)
+  const [globalNote,setglobalNote]=useState([])
 
-  
+  const globalNotes=async ()=>{
+    const getglobalNotes= await fetch(host+"/api/notes/getglobalNotes",{
+      method:"GET",
+      headers:{
+        "auth-token": localStorage.getItem("auth-token")
+      },
+    })
+    const json= await getglobalNotes.json();
+    setglobalNote(json.allglobalNotes)
+  }  
+
+
   const getAllNotes=async ()=>{
     const getNotes= await fetch(host+"/api/notes/allNotes",{
       method:"GET",
@@ -23,7 +36,7 @@ const NoteState = (props) => {
 
 
   // adding a new note
-  const addNote= async (title,description,tag,alert)=>{
+  const addNote= async (title,description,tag,postImg,alert)=>{
       setData(false)
      const res = await fetch(host+"/api/notes/createNote",{
       method:'POST',
@@ -31,7 +44,7 @@ const NoteState = (props) => {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem("auth-token")
       },
-      body:JSON.stringify({title,description,tag})
+      body:JSON.stringify({title,description,tag,postImg})
     })
     if(res) props.showAlert("One note added succesfully","success")
     getAllNotes();
@@ -56,13 +69,14 @@ const NoteState = (props) => {
     const title=String(note.utitle)
     const description=String(note.udescription)
     const tag=String(note.utag)
+    const postImg=String(note.upostImg)
     const res = await fetch(host+"/api/notes/editNote/"+id,{
       method:'PUT',
       headers:{
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem("auth-token")
       },
-      body:JSON.stringify({title,description,tag})
+      body:JSON.stringify({title,description,tag,postImg})
     })
     if(res) props.showAlert("One note updated successfully","success")
     getAllNotes();
@@ -74,7 +88,7 @@ const NoteState = (props) => {
 
 
   return (
-    <NoteContext.Provider value={{data,notes ,addNote, deleteNote, updateNote, getAllNotes}}>
+    <NoteContext.Provider value={{data,notes ,addNote, deleteNote, updateNote, getAllNotes,globalNotes,globalNote,setglobalNote}}>
       {props.children}
     </NoteContext.Provider>
   );

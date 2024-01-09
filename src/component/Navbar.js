@@ -1,11 +1,13 @@
-const { Link, useLocation } = require("react-router-dom");
+import React from "react";
+const { Link, useLocation ,useNavigate} = require("react-router-dom");
 
 function Navbar() {
   const location =useLocation();
-  
+  const navigate=useNavigate()
   const handleClick=()=>{
     localStorage.removeItem("auth-token")
     localStorage.removeItem("user")
+    navigate('/login')
   }
   const user=localStorage.getItem("user")
   return (
@@ -21,6 +23,11 @@ function Navbar() {
           <li className={"nav-item "+location.pathname==='/'?"active":""}>
             <Link className="nav-link" to="/">
               Home <span className="sr-only">(current)</span>
+            </Link>
+          </li>
+          <li className={"nav-item "+location.pathname==='/'?"active":""}>
+            <Link className="nav-link" to="/profile">
+              Profile <span className="sr-only">(current)</span>
             </Link>
           </li>
           {/* <li className={"nav-item "+location.pathname==='/about'?"active":""}>

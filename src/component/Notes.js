@@ -20,7 +20,7 @@ function Notes(props) {
     // eslint-disable-next-line
   }, []);
 
-  const [unote,setunote] = useState({id:"",utitle:"",udescription:"",utag:""})
+  const [unote,setunote] = useState({id:"",utitle:"",udescription:"",utag:"",upostImg:""})
   const toggleUpdateNote=(note)=>{
     ref.current.click()
     setunote({id:note._id,utitle:note.title,udescription:note.description,utag:note.tag})
@@ -37,7 +37,18 @@ function Notes(props) {
     updateNote(unote)
     ref.current.click()
   }
-
+  const convertToBase64 = (file) => {
+    const fileReader =new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      setunote({...unote, upostImg: `${fileReader.result}`})
+    };
+}
+const HandleImage = (e) => {
+    const file = e.target.files[0];
+    // console.log( e.target.files[0])
+    convertToBase64(file);
+}
 
   return (
     <div className="container">
@@ -58,7 +69,7 @@ function Notes(props) {
               </button>
             </div>
             <div className="modal-body">
-              <form>
+              <form >
                 <div className="form-group">
                   <label htmlFor="utitle">Title</label>
                   <input name="utitle" type="text" className="form-control" id="utitle" onChange={handleChange}/>
@@ -70,6 +81,10 @@ function Notes(props) {
                 <div className="form-group">
                   <label htmlFor="ntag">Tag</label>
                   <input name="utag" type="text" className="form-control" id="utag" onChange={handleChange}/>
+                </div>
+                <div className="form-group">
+                  {/* <label htmlFor="">Tag</label> */}
+                  <input name="upostImg" type="file" className="form-control" id="upostImg" onChange={(e) => {HandleImage(e)}}/>
                 </div>
               </form>
             </div>
