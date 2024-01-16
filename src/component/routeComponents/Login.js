@@ -14,7 +14,7 @@ function Login(props) {
         e.preventDefault();
         const {email,password} = user
         // https://inotebook-server-m9df.onrender.com/api/auth/login
-        const response = await fetch("http://localhost:5000/api/auth/login",{
+        const response = await fetch("http://localhost:5000/api/auth/loginUser",{
             method:"POST",
             headers:{
                 "Content-Type": "application/json"

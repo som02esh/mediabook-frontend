@@ -5,10 +5,12 @@ import {useNavigate} from "react-router-dom"
 function Home() {
   const navigate = useNavigate()
   const context = useContext(NoteContext);
-  const { globalNote,globalNotes} = context;
+  const { globalNote,globalNotes,getUser} = context;
+  
   useEffect(() => {
       if(localStorage.getItem("auth-token")){
           globalNotes();
+          getUser();
       }
       else{
           navigate('/login')

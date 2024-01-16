@@ -25,16 +25,17 @@ function Navbar() {
               Home <span className="sr-only">(current)</span>
             </Link>
           </li>
-          <li className={"nav-item "+location.pathname==='/'?"active":""}>
+          <li className={"nav-item "+location.pathname==='/profile'?"active":""}>
             <Link className="nav-link" to="/profile">
               Profile <span className="sr-only">(current)</span>
             </Link>
           </li>
-          {/* <li className={"nav-item "+location.pathname==='/about'?"active":""}>
-            <Link className="nav-link" to="/about">
-              About
+
+          <li className={"nav-item "+location.pathname==='/myprofile'?"active":""}>
+            <Link className="nav-link" to="myprofile">
+              MyProfile
             </Link>
-          </li> */}
+          </li>
         </ul>
       {localStorage.getItem("user") && <h4 className="text-warning mr-2">Welcome {user.split(" ")[0]}!!</h4>}
           
