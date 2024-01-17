@@ -19,19 +19,41 @@ function GlobalNoteitem(props) {
         setPostUser({name:data.name,profilePhoto:data.profilePhoto})
         // console.log(json.user)
     }
+    function extractDateFromTimestamp(timestamp) {
+      // Create a new Date object from the timestamp
+      const dateObject = new Date(timestamp);
+    
+      // Extract year, month, and day
+      const year = dateObject.getUTCFullYear();
+      const month = (dateObject.getUTCMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+      const day = dateObject.getUTCDate().toString().padStart(2, '0');
+    
+      // Format the date as "YYYY-MM-DD"
+      const formattedDate = `${day}-${month}-${year}`;
+    
+      return formattedDate;
+    }
       useEffect(()=>{
         userAuthenticate()
       },[])
     return (
-        <div className="card bg-dark text-warning ml-1 mb-1 noteItem " style={{height:"600px"}} >
+        <div className="card bg-dark text-warning ml-1 mb-1 noteItem " style={{height:"400px"}} >
               <div className="card-body">
-                <img src={postUser.profilePhoto} alt="" width="45px" height="45px" />
-              <h4 className="card-title text-light" >{postUser.name}</h4>
-                <h4 className="card-title text-light" >{note.title}</h4>
+                <div className="d-flex">
+                <img src={postUser.profilePhoto} alt="" width="45px" height="45px" className='mx-4 rounded-circle'/>
+              <h4 className="card-title text-light mx-3 my-2" >{postUser.name}</h4>
+              <h6 className="card-title text-light mx-3 my-2" >{extractDateFromTimestamp(note.date)}</h6>
+              {/* <h4 className="card-title text-light mx-3 my-2" >{note.date.split("-")[2]}</h4> */}
+              </div>
+                {/* <h4 className="card-title text-light" >{note.title}</h4> */}
                 <div className="noteImg" style={{backgroundImage:`url(${note.postImg})`}}></div>
                 <p className="card-text text-warning">
                   {note.description}
                 </p>
+                <div className="d-flex justify-content-between align-items">
+                <i className="fa-light fa-heart fa-solid" ></i>
+                <i className="fa-solid fa-comment"></i>
+              </div>
               </div>
           </div>
     )

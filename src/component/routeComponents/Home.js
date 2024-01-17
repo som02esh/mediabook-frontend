@@ -16,6 +16,7 @@ function Home() {
           navigate('/login')
       }
   }, []);
+  // console.log(globalNote)
   return (
     <>
 
