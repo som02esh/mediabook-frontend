@@ -14,7 +14,8 @@ function Login(props) {
         e.preventDefault();
         const {email,password} = user
         // https://inotebook-server-m9df.onrender.com/api/auth/login
-        const response = await fetch("http://localhost:5000/api/auth/loginUser",{
+        const host="https://mediabook-server.vercel.app"
+        const response = await fetch(host+"/api/auth/loginUser",{
             method:"POST",
             headers:{
                 "Content-Type": "application/json"
@@ -25,6 +26,7 @@ function Login(props) {
         if(json.login){
             localStorage.setItem("auth-token",json.authToken)
             localStorage.setItem("user",json.userName)
+            localStorage.setItem("uid",json.userId)
             navigate("/")
             props.showAlert(json.msg,"success"); 
         }

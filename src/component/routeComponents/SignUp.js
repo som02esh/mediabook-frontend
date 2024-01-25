@@ -17,7 +17,7 @@ const Signup = () => {
     const [profileImg,setProfileImg] = useState("");
     const [bgImg,setBgImg] = useState("");
 
-
+    const host="https://mediabook-server.vercel.app"
 
     const handleChangeEmail= (e) =>{
     setEmail(e.target.value)
@@ -36,7 +36,7 @@ const Signup = () => {
   
   
   const handleOtp=async (e)=>{
-        const response = await fetch("http://localhost:5000/api/auth/sendOtp",{
+        const response = await fetch(host+"/api/auth/sendOtp",{
             method:"POST",
             headers:{
                 "Content-Type": "application/json"
@@ -54,7 +54,7 @@ const Signup = () => {
         }
     }
     const verifyOtp=async (e)=>{
-      const response = await fetch("http://localhost:5000/api/auth/verifyOtp",{
+      const response = await fetch(host+"/api/auth/verifyOtp",{
           method:"POST",
           headers:{
               "Content-Type": "application/json"
@@ -81,7 +81,7 @@ const Signup = () => {
     console.log(password)
     console.log(profileImg)
     try {
-        const respon = await fetch("http://localhost:5000/api/auth/createUser", {
+        const respon = await fetch(host+"/api/auth/createUser", {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json",

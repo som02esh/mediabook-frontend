@@ -3,14 +3,15 @@ import NoteContext from "./NoteContext";
 
 const NoteState = (props) => {
   // const host="https://inotebook-server-m9df.onrender.com" 
-  const host="http://localhost:5000"
+  const host="https://mediabook-server.vercel.app"
+  // const host="http://localhost:5000"
   const [notes, setNotes] = useState([]);
   const [data,setData] = useState(false)
   const [globalNote,setglobalNote]=useState([])
   const [user,setUser]=useState([])
 
   const getUser = async()=>{
-    const response=await fetch("http://localhost:5000/api/auth/getUser",{
+    const response=await fetch(host+"/api/auth/getUser",{
             method:"POST",
             headers:{
                 "Content-Type": "application/json",
