@@ -1,15 +1,22 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState,useContext} from 'react'
 import { BiComment} from "react-icons/bi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-// import NoteContext from '../context/notes/NoteContext';
+import {Link} from "react-router-dom"
+import "./routeComponents/Post.css"
+// import queryString from "query-string"
+import NoteContext from '../context/notes/NoteContext';
 function GlobalNoteitem(props) {
-    // const context=useContext(NoteContext)
+      const context=useContext(NoteContext)
+      const {data}=context
       const {note}=props;
       const [postUser,setPostUser]=useState({name:"",profilePhoto:""})
       const [likeCount, setLikeCount] = useState(0);
       const [like, setLike] = useState(false);
       const userId=localStorage.getItem("uid")
-      const host="https://mediabook-server.vercel.app"
+ 
+      // const host="https://mediabook-server.vercel.app"
+      const host="http://localhost:5000"
+
       const handleLikes = async () => {
           try {
             if (!like) {
@@ -70,7 +77,7 @@ function GlobalNoteitem(props) {
   
       
       // const host="http://localhost:5000"
-      const userAuthenticate=async()=>{
+      const getUserDetails=async()=>{
         const res = await fetch(host+"/api/notes/getPostUser",{
           method:'POST',
           headers:{
@@ -84,47 +91,92 @@ function GlobalNoteitem(props) {
         setPostUser({name:data.name,profilePhoto:data.profilePhoto})
         // console.log(json.user)
     }
-    function extractDateFromTimestamp(timestamp) {
-      const dateObject = new Date(timestamp);  
-      const year = dateObject.getUTCFullYear();
-      const month = (dateObject.getUTCMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
-      const day = dateObject.getUTCDate().toString().padStart(2, '0');
-      // Format the date as "YYYY-MM-DD"
-      const formattedDate = `${day}-${month}-${year}`;
-      return formattedDate;
-    }
+
+    // const commentSection=async()=>{
+    //   const res = await fetch(host+"/api/notes/getPostUser",{
+    //     method:'POST',
+    //     headers:{
+    //       "Content-Type": "application/json"
+    //     },
+    //     body:JSON.stringify({id:note.userId})
+    // })
+    // // const response= await res.json()
+    // const json=await res.json()
+    // const data=json.user
+    //   setPostUser({name:data.name,profilePhoto:data.profilePhoto})
+    // }
+
+
+    // const notes = queryString.stringify(note);
       useEffect(()=>{
-        userAuthenticate()
+        getUserDetails()
         getLikeCount()
         getLikeStatus()
       },[])
     return (
-        <div className="card bg-dark text-warning ml-1 mb-1 noteItem " style={{height:"440px"}} >
+      <>
+      <div className="post-container">
+      <div className="post-header">
+          <img src={postUser.profilePhoto} alt="Profile" className="profile-photo"/>
+          <div>
+              <div className="username">{postUser.name}</div>
+              <div className="post-date">{note.date}</div>
+          </div>
+      </div>
+      <div className="postImage" style={{backgroundImage:`url(${note.postImg})`}}>
+      <img src={note.postImg} alt="Post" className="post-image" onDoubleClick={handleLikes}/>
+      </div>
+      <div className="post-content">
+          <p>{note.description}</p>
+      </div>
+      <div className="interactions">
+          <div className="like-btn">
+          {like ? (
+                <>
+                <AiFillHeart size={30} className="text-danger" onClick={handleLikes} style={{ cursor: "pointer" }}/>{likeCount}</>) : (
+                <>
+                <AiOutlineHeart size={30} onClick={handleLikes} style={{ cursor: "pointer" }}/>{likeCount}</>
+              )}
+          </div>
+          <div className="comment-btn">
+          <Link to={`/Post/${note._id}`} className='searchUser'><BiComment size={30} style={{ cursor: "pointer" }} /></Link>
+          </div>
+      </div>  
+    </div>
+
+
+
+
+        {/* <div className="card bg-dark text-warning ml-1 mb-1 noteItem " style={{height:"440px"}} >
               <div className="card-body">
                 <div className="card-header d-flex">
                 <img src={postUser.profilePhoto} alt="" width="45px" height="45px" className='mx-4 rounded-circle'/>
-              <h4 className="card-title text-light my-2" >{postUser.name}</h4>
+              <h4 className="card-title text-light my-2" >{postUser.name}</h4> */}
               {/* <h6 className="card-title text-light my-3" >{extractDateFromTimestamp(note.date)}</h6> */}
               {/* <h4 className="card-title text-light mx-3 my-2" >{note.date.split("-")[2]}</h4> */}
-              </div>
+              {/* </div> */}
                 {/* <h4 className="card-title text-light" >{note.title}</h4> */}
-                <div className="noteImg" style={{backgroundImage:`url(${note.postImg})`}} onDoubleClick={handleLikes}></div>
-                <p className="card-text text-warning">
+                {/* <div className="noteImg" style={{backgroundImage:`url(${note.postImg})`,height:"50%",width:"100%",backgroundSize:"cover"}} onDoubleClick={handleLikes}></div> */}
+                {/* <p className="card-text text-warning">
                   {note.description}
                 </p>
                 <div className="card-footer d-flex justify-content-between align-items">
-                  <div>
-            {like ? (
+                  <div> */}
+            {/* {like ? (
               <>
               <AiFillHeart size={30} className="text-danger" onClick={handleLikes} style={{ cursor: "pointer" }}/>{likeCount}</>) : (
               <>
               <AiOutlineHeart size={30} onClick={handleLikes} style={{ cursor: "pointer" }}/>{likeCount}</>
             )}
-            </div>
-            <BiComment size={30} style={{ cursor: "pointer" }} />
-          </div>
+            </div> */}
+
+            {/* <Link to={`/Post/${note._id}`} className='searchUser'><BiComment size={30} style={{ cursor: "pointer" }} /></Link> */}
+            {/* <BiComment size={30} style={{ cursor: "pointer" }} onClick={commentSection}/> */}
+          {/* </div>
               </div>
-          </div>
+          </div> */}
+         
+          </>
     )
 }
 

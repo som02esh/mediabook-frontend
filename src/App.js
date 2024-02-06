@@ -10,6 +10,7 @@ import { useState } from "react";
 import Alert from "./component/Alert";
 import Profile from "./component/routeComponents/Profile";
 import Myprofile from "./component/routeComponents/Myprofile";
+import Post from "./component/routeComponents/Post"
 function App() {
   const [alert,setAlert] =useState(null)
   const showAlert=(msg,type)=>{
@@ -32,6 +33,7 @@ function App() {
           <Route path="/myprofile" element={<Myprofile />}></Route>
           <Route path="/login" element={<Login showAlert={showAlert}/>}></Route>
           <Route path="/signup" element={<Signup showAlert={showAlert} />}></Route>
+          <Route path="/Post/:noteId" element={<Post />} />
         </Routes>
       </BrowserRouter>
     </NoteState>

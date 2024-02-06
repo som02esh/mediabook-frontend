@@ -17,7 +17,7 @@ function Myprofile() {
   //     cleanup();
   //   };
   // }, []);
-
+    //  console.log("object")
   return (
     <>
     <div className="background-container"></div>

@@ -18,6 +18,7 @@ const Signup = () => {
     const [bgImg,setBgImg] = useState("");
 
     const host="https://mediabook-server.vercel.app"
+    // const host="http://localhost:5000"
 
     const handleChangeEmail= (e) =>{
     setEmail(e.target.value)

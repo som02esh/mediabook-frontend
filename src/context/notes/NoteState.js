@@ -9,6 +9,7 @@ const NoteState = (props) => {
   const [data,setData] = useState(false)
   const [globalNote,setglobalNote]=useState([])
   const [user,setUser]=useState([])
+  
 
   const getUser = async()=>{
     const response=await fetch(host+"/api/auth/getUser",{
@@ -32,6 +33,7 @@ const NoteState = (props) => {
     })
     const json= await getglobalNotes.json();
     setglobalNote(json.allglobalNotes)
+    setData(true)
   }  
 
 

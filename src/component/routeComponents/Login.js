@@ -15,6 +15,7 @@ function Login(props) {
         const {email,password} = user
         // https://inotebook-server-m9df.onrender.com/api/auth/login
         const host="https://mediabook-server.vercel.app"
+        // const host="http://localhost:5000"
         const response = await fetch(host+"/api/auth/loginUser",{
             method:"POST",
             headers:{
