@@ -12,9 +12,9 @@ function NoteItem(props) {
             {/* <h4 className="card-title text-light ">{user.name}</h4> */}
               <h4 className="card-title text-light ">{note.title}</h4>
               <div className="noteImg" style={{backgroundImage:`url(${note.postImg})`}}></div>
-              <p className="card-text text-warning">
+              {/* <p className="card-text text-warning">
                 {note.description}
-              </p>
+              </p> */}
               <div className="d-flex justify-content-between align-items">
                 <i className="fa-solid fa-trash text-danger" onClick={()=>deleteNote(note._id)}></i>
                 <i className="fa-regular fa-pen-to-square text-info" onClick={()=>{toggleUpdateNote(note)}}></i>
