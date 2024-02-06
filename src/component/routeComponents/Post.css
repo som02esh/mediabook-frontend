@@ -6,8 +6,8 @@ body {
 }
 
 .post-container {
-    width: clamp(300px,60%,700px);
-    aspect-ratio: 1/1;
+    width: clamp(300px,55%,700px);
+    aspect-ratio: 1/1.1;
     /* height: 40vh; */
     margin: 22px auto;
     background-color: #fff;
@@ -51,6 +51,10 @@ body {
 
 .post-content {
     padding: 10px;
+}
+.post-content p{
+    margin-top: -1rem;
+    margin-bottom: 0;
 }
 
 .post-date {
