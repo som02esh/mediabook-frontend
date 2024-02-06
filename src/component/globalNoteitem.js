@@ -4,16 +4,16 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import {Link} from "react-router-dom"
 import "./routeComponents/Post.css"
 // import queryString from "query-string"
-import NoteContext from '../context/notes/NoteContext';
+// import NoteContext from '../context/notes/NoteContext';
 function GlobalNoteitem(props) {
-      const context=useContext(NoteContext)
-      const {data}=context
+      // const context=useContext(NoteContext)
+      // const {data}=context
       const {note}=props;
       const [postUser,setPostUser]=useState({name:"",profilePhoto:""})
       const [likeCount, setLikeCount] = useState(0);
       const [like, setLike] = useState(false);
       const userId=localStorage.getItem("uid")
- 
+
       const host="https://mediabook-server.vercel.app"
       // const host="http://localhost:5000"
 
@@ -123,12 +123,13 @@ function GlobalNoteitem(props) {
               <div className="post-date">{note.date}</div>
           </div>
       </div>
-      <div className="postImage" style={{backgroundImage:`url(${note.postImg})`}}>
-      <img src={note.postImg} alt="Post" className="post-image" onDoubleClick={handleLikes}/>
-      </div>
       <div className="post-content">
           <p>{note.description}</p>
       </div>
+      <div className="postImage" style={{backgroundImage:`url(${note.postImg})`}}>
+      <img src={note.postImg} alt="Post" className="post-image" onDoubleClick={handleLikes}/>
+      </div>
+      
       <div className="interactions">
           <div className="like-btn">
           {like ? (

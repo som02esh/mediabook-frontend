@@ -13,7 +13,6 @@ const Post = () => {
   const [allComments, setAllComments] = useState([]);
   const [particularPost, setParticularPost] = useState({description:"",postImg:"",userId:null,date:null})
   const [postUser,setPostUser]=useState({name:"",profilePhoto:""})
-  // const [postId, setPostId] = useState('');
   const [likeCount, setLikeCount] = useState(0);
   const [like, setLike] = useState(false);
   const [time, setTime] = useState("");
@@ -156,7 +155,9 @@ setTime(tt)
             <div class="post-date">{time}</div>
         </div>
     </div>
+    <div className="postImage" style={{backgroundImage:`url(${particularPost.postImg})`}}>
     <img src={particularPost.postImg} alt="Post" className="post-image" onDoubleClick={handleLikes}/>
+    </div>
     <div class="post-content">
         <p>{particularPost.description}</p>
     </div>
@@ -172,7 +173,7 @@ setTime(tt)
         <div class="comment-btn">Comment</div>
     </div>
     <form onSubmit={addComment}>
-      <textarea rows="4" cols="72" placeholder="Add a comment..." value={comment} onChange={(e) => setComment(e.target.value)} ></textarea>
+      <textarea placeholder="Add a comment..." value={comment} onChange={(e) => setComment(e.target.value)} style={{height:"100px",width:"100%"}}></textarea>
       <br />
       <button type="submit">Submit</button>
     </form>

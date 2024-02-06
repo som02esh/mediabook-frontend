@@ -1,13 +1,7 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-
-
-
 const Signup = () => {
     const navigate=useNavigate();
-
-
-
     const [email,setEmail]= useState("")
     const [name,setName]= useState("")
     const [password,setPassword]= useState("")
@@ -65,7 +59,7 @@ const Signup = () => {
       const json=await response.json()
       if(json.status){
          setCheckOtpVeified(json.status);
-         
+       
           // props.showAlert(json.msg,"successfully verified")
       }
       else{
@@ -93,6 +87,7 @@ const Signup = () => {
             console.log(result);
         if(result.signup){
               localStorage.setItem("auth-token",result.authToken)
+              localStorage.setItem("user",name)
               navigate("/")
               console.log(result.msg)
               alert(result.msg,"success")
