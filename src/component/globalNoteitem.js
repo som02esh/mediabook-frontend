@@ -14,8 +14,8 @@ function GlobalNoteitem(props) {
       const [like, setLike] = useState(false);
       const userId=localStorage.getItem("uid")
  
-      // const host="https://mediabook-server.vercel.app"
-      const host="http://localhost:5000"
+      const host="https://mediabook-server.vercel.app"
+      // const host="http://localhost:5000"
 
       const handleLikes = async () => {
           try {
