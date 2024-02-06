@@ -6,7 +6,7 @@ body {
 }
 
 .post-container {
-    width: clamp(200px,60%,700px);
+    width: clamp(300px,60%,700px);
     aspect-ratio: 1/1;
     /* height: 40vh; */
     margin: 22px auto;
