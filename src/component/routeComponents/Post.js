@@ -175,7 +175,7 @@ setTime(tt)
     <form onSubmit={addComment}>
       <textarea placeholder="Add a comment..." value={comment} onChange={(e) => setComment(e.target.value)} style={{height:"100px",width:"100%"}}></textarea>
       <br />
-      <button type="submit">Submit</button>
+      <button type="submit">Add Comment</button>
     </form>
     <div id="comments">
         {allComments.map((comments, index) => (

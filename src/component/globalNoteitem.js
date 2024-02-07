@@ -123,11 +123,11 @@ function GlobalNoteitem(props) {
               <div className="post-date">{note.date}</div>
           </div>
       </div>
-      <div className="post-content">
-          <p>{note.description}</p>
-      </div>
       <div className="postImage" style={{backgroundImage:`url(${note.postImg})`}}>
       <img src={note.postImg} alt="Post" className="post-image" onDoubleClick={handleLikes}/>
+      </div>
+      <div className="post-content">
+          <p>{note.description}</p>
       </div>
       
       <div className="interactions">
