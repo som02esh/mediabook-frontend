@@ -105,7 +105,7 @@ const HandleImage = (e) => {
       </div>
 
 
-      <h2>Your Posts</h2>
+      <h2>Your Notes</h2>
       {!data? 
        <center>
        <div className="spinner-grow text-dark" role="status" style={{width: "3rem", height: "3rem"}}>

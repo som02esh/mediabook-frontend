@@ -28,18 +28,13 @@ function Navbar() {
           </li>
           <li className={"nav-item "+location.pathname==='/profile'?"active":""}>
             <Link className="nav-link" to="/profile">
-              Add Post <span className="sr-only">(current)</span>
+              Profile <span className="sr-only">(current)</span>
             </Link>
           </li>
 
           <li className={"nav-item "+location.pathname==='/myprofile'?"active":""}>
             <Link className="nav-link" to="myprofile">
               MyProfile
-            </Link>
-          </li>
-          <li className={"nav-item "+location.pathname==='/Connect'?"active":""}>
-            <Link className="nav-link" to="Connect">
-              Connect
             </Link>
           </li>
         </ul>

@@ -7,7 +7,7 @@ function NoteItem(props) {
     const {note,toggleUpdateNote}=props;
   // const user=localStorage.getItem('user')
   return (
-      <div className="card bg-dark text-warning ml-1 mb-1 noteItem " style={{height:"250px"}} >
+      <div className="card bg-dark text-warning ml-1 mb-1 noteItem " style={{height:"350px"}} >
             <div className="card-body">
             {/* <h4 className="card-title text-light ">{user.name}</h4> */}
               <h4 className="card-title text-light ">{note.title}</h4>

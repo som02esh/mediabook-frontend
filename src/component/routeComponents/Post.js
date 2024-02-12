@@ -79,10 +79,8 @@ const handleLikes = async () => {
         try {
           if (!like) {
                   setLike(true);
-                  
                 } else {
                   setLike(false);
-    
                 }
           const response = await fetch(host+"/api/notes/like",{
             method:'POST',
