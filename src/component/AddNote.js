@@ -30,7 +30,7 @@ function AddNote(props) {
   }
   return (
     <div id="mb-5">
-      <h2>Add a note</h2>
+      <h2>Add a post</h2>
       <form onSubmit={handleSubmit} method="post" encType="multipart/form-data">
         <div className="form-group">
           <label htmlFor="title">Title</label>
@@ -50,7 +50,7 @@ function AddNote(props) {
           <input name="postImg" type="file" className="form-control" id="postImg"  onChange={(e) => {HandleImage(e)}} required/>
         </div>
         <button type="submit" className="btn btn-warning">
-        Add Note
+        Add Your Post
         </button>
       </form>
       </div>
