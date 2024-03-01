@@ -1,6 +1,6 @@
-# iNotebook-Site
+# Mediabook-Site
 
-## Check out the iNotebook at below:-
+## Check out the Mediabook at below:-
 
 [iNotebook](https://inotebook-alexweb.netlify.app/)
 
